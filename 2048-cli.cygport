@@ -1,0 +1,22 @@
+NAME="2048-cli"
+VERSION=0.9.1
+RELEASE=1
+CATEGORY="Games"
+SUMMARY="2048 game for terminal"
+DESCRIPTION="A CLI version/engine of the game 2048 for your *NIX terminal."
+HOMEPAGE="https://github.com/Tiehuis/2048-cli"
+SRC_URI="${HOMEPAGE}/archive/v${VERSION}/2048-cli-v${VERSION}.tar.gz"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	cygmake sdl
+	mv 2048 2048x
+	cygmake curses
+}
+
+src_install() {
+	cd ${B}
+	dobin 2048.exe
+	doman man/2048.1
+}
